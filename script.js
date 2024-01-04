@@ -12,9 +12,10 @@
 // console.log(document.querySelector('.guess').value);
 
 let score = 20;
+let highScore = 0;
 
 let secretNumber = Math.trunc(Math.random()*20)+1;
-console.log(secretNumber);
+// console.log(secretNumber);
 
 // Game Logic!
 document.querySelector('.check').addEventListener('click', ()=>{
@@ -33,6 +34,12 @@ document.querySelector('.check').addEventListener('click', ()=>{
         document.querySelector('.number').style.width = "30rem";
         document.querySelector('.number').textContent = secretNumber; 
         document.querySelector('body').style.backgroundColor = "#3e8229";
+
+        if(score > highScore)
+        {
+            highScore = score;
+            document.querySelector('.highscore').textContent = highScore; 
+        }
     }
     // when guess is too high!
     else if(guess > secretNumber)
