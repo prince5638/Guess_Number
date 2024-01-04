@@ -1,5 +1,6 @@
 'use strict';
 
+// Just for learning!
 // console.log(document.querySelector('.message'));
 // console.log(document.querySelector('.message').textContent);
 // document.querySelector('.message').textContent = 'Correct Number!';
@@ -12,16 +13,14 @@
 
 let score = 20;
 
-const secretNumber = Math.trunc(Math.random()*20)+1;
+let secretNumber = Math.trunc(Math.random()*20)+1;
 console.log(secretNumber);
 
-document.querySelector('.number').textContent = secretNumber; 
-
-
+// Game Logic!
 document.querySelector('.check').addEventListener('click', ()=>{
     const guess = +document.querySelector('.guess').value;
     console.log(guess, typeof guess);
-
+    
     // when there is no input!
     if(!guess)
     {
@@ -30,9 +29,10 @@ document.querySelector('.check').addEventListener('click', ()=>{
     // when player wins!
     else if(guess === secretNumber)
     {
-        document.querySelector('.message').textContent = "🎉` Correct Number!";
-        document.querySelector('body').style.backgroundColor = "#3e8229";
+        document.querySelector('.message').textContent = "🎉 Correct Number!";
         document.querySelector('.number').style.width = "30rem";
+        document.querySelector('.number').textContent = secretNumber; 
+        document.querySelector('body').style.backgroundColor = "#3e8229";
     }
     // when guess is too high!
     else if(guess > secretNumber)
@@ -68,3 +68,24 @@ document.querySelector('.check').addEventListener('click', ()=>{
     }
 });
 
+// Again button funciton code!
+document.querySelector('.again').addEventListener('click', ()=>{
+    score = 20;
+    // reseting secretNumber
+    secretNumber = Math.trunc(Math.random()*20)+1;
+    document.querySelector('.number').textContent = "?";
+
+    // reseting score box
+    document.querySelector('.score').textContent = score;
+
+    // reseting message
+    document.querySelector('.message').textContent = "Start guessing...";
+
+    // reseting input box
+    document.querySelector('.guess').value = '';
+
+    // reseting style
+    document.querySelector('body').style.backgroundColor = "#222";
+    document.querySelector('.message').style.color = "white";
+    document.querySelector('.number').style.width = "15rem";
+});
